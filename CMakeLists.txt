@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 3.22)
 project(CppTooling)
 
+# Add the clang format package using cmake
+include(cmake/CPM.cmake)
+CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
+
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 add_executable(Cpp-Tooling main.cpp)
 add_executable(unit_tests test/unit_tests.cpp)
