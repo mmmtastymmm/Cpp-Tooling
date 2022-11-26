@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a set of commands using the runners shell
-      - name: Unit Tests
+      - name: Unit Tests GCC
         run: |
           mkdir build
           cd build
@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a set of commands using the runners shell
-      - name: Unit Tests
+      - name: Unit Tests Clang
         run: |
           mkdir build
           cd build
@@ -62,7 +62,7 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a set of commands using the runners shell
-      - name: Unit Tests
+      - name: Format C++ and CMake
         run: |
           mkdir build
           cd build
