@@ -154,7 +154,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Format C++ and CMake
         run: |
-          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=MemorySanitizer
+          cmake -S . -B build -G Ninja -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++ -D CMAKE_BUILD_TYPE=MemorySanitizer
           cmake --build build --target all
           grep -q "sanitize=memory" build/compile_commands.json
           cd build && ctest --output-on-failure
