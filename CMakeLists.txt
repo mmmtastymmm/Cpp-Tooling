@@ -24,6 +24,4 @@ set(BUILD_TESTS
 
 if(${BUILD_TESTS})
   add_test(NAME "Unit Tests" COMMAND unit_tests)
-else()
-  message("No")
 endif()
