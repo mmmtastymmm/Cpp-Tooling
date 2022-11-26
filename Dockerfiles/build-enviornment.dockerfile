@@ -7,6 +7,10 @@ RUN apt-get update &&  \
     clang-format \
     clang-tidy \
     cmake \
+    git \
     ninja-build  \
+    python3-pip \
+    wget \
     && \
-    apt-get clean
+    apt-get clean && \
+    pip install --no-cache cmake-format
