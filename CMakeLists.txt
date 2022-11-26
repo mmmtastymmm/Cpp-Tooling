@@ -30,8 +30,9 @@ set(BUILD_TESTS
 
 if(${BUILD_TESTS})
   # Add one executable target for the unit tests
-  add_executable(unit_tests test/unit_tests.cpp)
-  # Add this test to ctest, so all that is required to test is to run ctest in
+  add_executable(
+    unit_tests test/unit_tests.cpp) # Add this test to ctest, so all that is
+                                    # required to test is to run ctest in
   # the build directory
   add_test(NAME "Unit Tests" COMMAND unit_tests)
 endif()
