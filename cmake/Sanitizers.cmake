@@ -1,5 +1,4 @@
-# Add new build types
-## Coverage
+# Add new build types Coverage
 message(STATUS "Adding build types...")
 set(CMAKE_CXX_FLAGS_COVERAGE
     "${GCC_DEBUG_FLAGS} -fprofile-arcs -ftest-coverage"
@@ -9,7 +8,7 @@ set(CMAKE_C_FLAGS_COVERAGE
     CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
 mark_as_advanced(CMAKE_CXX_FLAGS_COVERAGE CMAKE_C_FLAGS_COVERAGE)
 
-## Address Sanitizer
+# Address Sanitizer
 set(CMAKE_CXX_FLAGS_ADDRESSSANITIZER
     "-fsanitize=address -O1 -g -fno-omit-frame-pointer"
     CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
@@ -19,27 +18,25 @@ set(CMAKE_C_FLAGS_ADDRESSSANITIZER
 mark_as_advanced(CMAKE_CXX_FLAGS_ADDRESSSANITIZER
                  CMAKE_C_FLAGS_ADDRESSSANITIZER)
 
-## Leak Sanitizer
+# Leak Sanitizer
 set(CMAKE_CXX_FLAGS_LEAKSANITIZER
     "-fsanitize=leak"
     CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
 set(CMAKE_C_FLAGS_LEAKSANITIZER
     "-fsanitize=leak"
     CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
-mark_as_advanced(CMAKE_CXX_FLAGS_LEAKSANITIZER
-                 CMAKE_C_FLAGS_LEAKSANITIZER)
+mark_as_advanced(CMAKE_CXX_FLAGS_LEAKSANITIZER CMAKE_C_FLAGS_LEAKSANITIZER)
 
-## ThreadSanitizer
+# ThreadSanitizer
 set(CMAKE_CXX_FLAGS_THREADSANITIZER
     "-fsanitize=thread -O2 -g"
     CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
 set(CMAKE_C_FLAGS_THREADSANITIZER
     "-fsanitize=thread -O2 -g"
     CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
-mark_as_advanced(CMAKE_CXX_FLAGS_THREADSANITIZER
-                 CMAKE_C_FLAGS_THREADSANITIZER)
+mark_as_advanced(CMAKE_CXX_FLAGS_THREADSANITIZER CMAKE_C_FLAGS_THREADSANITIZER)
 
-## UndefinedBehaviorSanitizer
+# UndefinedBehaviorSanitizer
 set(CMAKE_CXX_FLAGS_UNDEFINEDBEHAVIORSANITIZER
     "-fsanitize=undefined -O0 -g"
     CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
@@ -49,15 +46,14 @@ set(CMAKE_C_FLAGS_UNDEFINEDBEHAVIORSANITIZER
 mark_as_advanced(CMAKE_CXX_FLAGS_UNDEFINEDBEHAVIORSANITIZER
                  CMAKE_C_FLAGS_UNDEFINEDBEHAVIORSANITIZER)
 
-## MemorySanitizer
+# MemorySanitizer
 set(CMAKE_CXX_FLAGS_MEMORYSANITIZER
     "-fsanitize-memory-track-origins -fsanitize=memory -fPIE -pie -fno-omit-frame-pointer -g"
     CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
 set(CMAKE_C_FLAGS_MEMORYSANITIZER
     "-fsanitize-memory-track-origins -fsanitize=memory -fPIE -pie -fno-omit-frame-pointer -g"
     CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
-mark_as_advanced(CMAKE_CXX_FLAGS_MEMORYSANITIZER
-                 CMAKE_C_FLAGS_MEMORYSANITIZER)
+mark_as_advanced(CMAKE_CXX_FLAGS_MEMORYSANITIZER CMAKE_C_FLAGS_MEMORYSANITIZER)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE
