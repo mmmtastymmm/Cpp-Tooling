@@ -18,7 +18,7 @@ set(BUILD_TESTS
     CACHE BOOL "Enable the projects tests")
 
 if(${BUILD_TESTS})
-    add_test(NAME "Unit Tests" COMMAND unit_tests)
+  add_test(NAME "Unit Tests" COMMAND unit_tests)
 else()
-    message("No")
+  message("No")
 endif()
