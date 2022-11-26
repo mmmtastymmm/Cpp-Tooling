@@ -11,7 +11,9 @@ auto add_1_multiple_times(int times, int &value) {
     }
 }
 
-auto getInt() -> int {}
+auto getInt() -> int {
+    return 5;
+}
 
 int main() {
     std::cout << "Hello, World!" << std::endl;

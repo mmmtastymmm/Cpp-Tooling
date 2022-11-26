@@ -15,7 +15,7 @@ target_link_libraries(cpp_tooling)
 add_executable(unit_tests test/unit_tests.cpp)
 
 target_compile_options(cpp_tooling PRIVATE -Wall -Wpedantic -Wshadow
-                                           -Wconversion -Wextra)
+                                           -Wconversion -Wextra -Werror)
 
 include(CTest)
 
