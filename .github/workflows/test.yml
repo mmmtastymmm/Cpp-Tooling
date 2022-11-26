@@ -64,5 +64,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Format C++ and CMake
         run: |
+          git config --global --add safe.directory /__w/Cpp-Tooling/Cpp-Tooling
           cmake -S . -B build -G Ninja
           cmake --build build --target check-format
