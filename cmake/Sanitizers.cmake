@@ -48,10 +48,10 @@ mark_as_advanced(CMAKE_CXX_FLAGS_UNDEFINEDBEHAVIORSANITIZER
 
 # MemorySanitizer
 set(CMAKE_CXX_FLAGS_MEMORYSANITIZER
-    "-fsanitize-memory-track-origins -fsanitize=memory -fPIE -pie -fno-omit-frame-pointer -g"
+    "-fsanitize-memory-track-origins -fsanitize=memory -fPIE -fno-omit-frame-pointer -g"
     CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
 set(CMAKE_C_FLAGS_MEMORYSANITIZER
-    "-fsanitize-memory-track-origins -fsanitize=memory -fPIE -pie -fno-omit-frame-pointer -g"
+    "-fsanitize-memory-track-origins -fsanitize=memory -fPIE -fno-omit-frame-pointer -g"
     CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
 mark_as_advanced(CMAKE_CXX_FLAGS_MEMORYSANITIZER CMAKE_C_FLAGS_MEMORYSANITIZER)
 

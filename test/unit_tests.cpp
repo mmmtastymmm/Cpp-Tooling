@@ -11,8 +11,6 @@ auto add_1_multiple_times(int times, int &value) {
     }
 }
 
-auto getInt() -> int {}
-
 int main() {
 
     return 0;
