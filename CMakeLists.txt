@@ -3,7 +3,7 @@ project(CppTooling)
 
 # Add the clang format package using cmake
 include(cmake/CPM.cmake)
-CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
+cpmaddpackage("gh:TheLartians/Format.cmake@1.7.3")
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
@@ -13,15 +13,12 @@ add_executable(unit_tests test/unit_tests.cpp)
 
 include(CTest)
 
-set(BUILD_TESTS TRUE CACHE BOOL "Enable the projects tests")
-
+set(BUILD_TESTS
+    TRUE
+    CACHE BOOL "Enable the projects tests")
 
 if(${BUILD_TESTS})
-    add_test(
-            NAME "Unit Tests"
-            COMMAND unit_tests
-    )
+    add_test(NAME "Unit Tests" COMMAND unit_tests)
 else()
     message("No")
 endif()
-
