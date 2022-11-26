@@ -28,7 +28,7 @@ jobs:
           cd build
           cmake -G Ninja ..
           cmake --build . --target all
-          ctest
+          ctest --output-on-failure
 
   # Test with the unit tests Clang
   build_and_unit_tests_clang:
@@ -48,7 +48,7 @@ jobs:
           cd build
           cmake -G Ninja -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++ ..
           cmake --build . --target all
-          ctest
+          ctest --output-on-failure
 
   # Test with the unit tests Clang
   format-code:
@@ -67,3 +67,94 @@ jobs:
           git config --global --add safe.directory /__w/Cpp-Tooling/Cpp-Tooling
           cmake -S . -B build -G Ninja
           cmake --build build --target check-format
+
+  # Test with the unit tests Address Sanitizer
+  address-sanitizer:
+    # The type of runner that the job will run on (has to be ubuntu for docker)
+    runs-on: ubuntu-latest
+    # The image tag to use for the container
+    container: mmmtastymmm/cpp-tooling-build-enviornment
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: Test
+        run: |
+          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=AddressSanitizer
+          cmake --build build --target all
+          grep -q "sanitize=address" build/compile_commands.json
+          cd build && ctest --output-on-failure
+
+  leak-sanitizer:
+    # The type of runner that the job will run on (has to be ubuntu for docker)
+    runs-on: ubuntu-latest
+    # The image tag to use for the container
+    container: mmmtastymmm/cpp-tooling-build-enviornment
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: Test
+        run: |
+          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=LeakSanitizer
+          cmake --build build --target all
+          grep -q "sanitize=leak" build/compile_commands.json
+          cd build && ctest --output-on-failure
+
+  thread-sanitizer:
+    # The type of runner that the job will run on (has to be ubuntu for docker)
+    runs-on: ubuntu-latest
+    # The image tag to use for the container
+    container: mmmtastymmm/cpp-tooling-build-enviornment
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: Test
+        run: |
+          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=ThreadSanitizer
+          cmake --build build --target all
+          grep -q "sanitize=thread" build/compile_commands.json
+          cd build && ctest --output-on-failure
+
+  undefined-behavior-sanitizer:
+    # The type of runner that the job will run on (has to be ubuntu for docker)
+    runs-on: ubuntu-latest
+    # The image tag to use for the container
+    container: mmmtastymmm/cpp-tooling-build-enviornment
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: Test
+        run: |
+          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=UndefinedBehaviorSanitizer
+          cmake --build build --target all
+          grep -q "sanitize=undefined" build/compile_commands.json
+          cd build && ctest --output-on-failure
+
+  memory-sanitizer:
+    # The type of runner that the job will run on (has to be ubuntu for docker)
+    runs-on: ubuntu-latest
+    # The image tag to use for the container
+    container: mmmtastymmm/cpp-tooling-build-enviornment
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: Test
+        run: |
+          cmake -S . -B build -G Ninja -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++ -D CMAKE_BUILD_TYPE=MemorySanitizer
+          cmake --build build --target all
+          grep -q "sanitize=memory" build/compile_commands.json
+          cd build && ctest --output-on-failure

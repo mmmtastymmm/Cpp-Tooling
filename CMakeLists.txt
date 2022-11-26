@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
 project(CppTooling)
 
+# Add the build types
+include(cmake/Sanitizers.cmake)
 # Add the clang format package using cmake
 include(cmake/CPM.cmake)
 cpmaddpackage("gh:TheLartians/Format.cmake@1.7.3")
