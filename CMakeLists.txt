@@ -11,6 +11,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 add_executable(Cpp-Tooling main.cpp)
 add_executable(unit_tests test/unit_tests.cpp)
 
+target_compile_options(Cpp-Tooling PRIVATE -Wall -Wpedantic -Wshadow
+                                           -Wconversion -Wextra -Werror)
+
 include(CTest)
 
 set(BUILD_TESTS
