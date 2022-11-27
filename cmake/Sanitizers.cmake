@@ -67,7 +67,10 @@ list(FIND ACCEPTABLE_BUILD_TYPES ${CMAKE_BUILD_TYPE} BUILD_TYPE_INDEX)
 # If the build type wasn't in the list it return index -1
 if(BUILD_TYPE_INDEX EQUAL -1)
   list(JOIN ACCEPTABLE_BUILD_TYPES " " PRETTY_BUILD_TYPES)
-  message(FATAL_ERROR "Please specify one of the follow build types (-D CMAKE_BUILD_TYPE=<type>): ${PRETTY_BUILD_TYPES}")
+  message(
+    FATAL_ERROR
+      "Please specify one of the follow build types (-D CMAKE_BUILD_TYPE=<type>): ${PRETTY_BUILD_TYPES}"
+  )
 endif(BUILD_TYPE_INDEX EQUAL -1)
 if(CMAKE_BUILD_TYPE IN_LIST ACCEPTABLE_CMAKE_BUILD_TYPES)
   list(JOIN ACCEPTABLE_BUILD_TYPES " " PRETTY_BUILD_TYPES)
