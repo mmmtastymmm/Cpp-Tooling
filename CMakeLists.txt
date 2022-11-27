@@ -30,10 +30,15 @@ set(BUILD_TESTS
     CACHE BOOL "Enable the projects tests")
 
 if(${BUILD_TESTS})
+  message(STATUS "Did enable unit tests for ${CMAKE_PROJECT_NAME}")
+  # Will enable tests now
+  enable_testing()
   # Add one executable target for the unit tests
   add_executable(unit_tests test/unit_tests.cpp test/catch_main.cpp)
   # Link with the catch2 main file
   target_link_libraries(unit_tests PRIVATE Catch2)
   # Add a test for ctest
-  add_test(NAME "Unit Tests" COMMAND unit_tests)
+  add_test(NAME "UnitTests" COMMAND unit_tests)
+else()
+  message(STATUS "Did NOT enable unit tests for ${CMAKE_PROJECT_NAME}")
 endif()
