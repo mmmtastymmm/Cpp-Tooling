@@ -1,2 +1,2 @@
 # Add any memory suppression here
-src:catch.hpp
+fun:*Catch*
