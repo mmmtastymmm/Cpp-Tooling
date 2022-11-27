@@ -7,6 +7,7 @@ RUN apt-get update &&  \
     clang-format \
     clang-tidy \
     cmake \
+    gdb \
     git \
     ninja-build  \
     python3-pip \
