@@ -53,7 +53,8 @@ set(CMAKE_CXX_FLAGS_MEMORYSANITIZER
 set(CMAKE_C_FLAGS_MEMORYSANITIZER
     "-fsanitize-memory-track-origins -fsanitize=memory -fPIE -fno-omit-frame-pointer -g"
     CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
-mark_as_advanced(CMAKE_CXX_FLAGS_MEMORYSANITIZER CMAKE_C_FLAGS_MEMORYSANITIZER)
+set(LINK_FLAGS_MEMORYSANITIZER "-fsanitize=memory")
+mark_as_advanced(CMAKE_CXX_FLAGS_MEMORYSANITIZER CMAKE_C_FLAGS_MEMORYSANITIZER LINK_FLAGS_MEMORYSANITIZER)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE
