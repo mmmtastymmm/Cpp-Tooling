@@ -6,7 +6,8 @@ include(cmake/Sanitizers.cmake)
 # Add the clang format package using cmake
 include(cmake/CPM.cmake)
 # Add the testing framework, using doctest here
-cpmaddpackage(NAME doctest GITHUB_REPOSITORY doctest/doctest GIT_TAG v2.4.9)
+cpmaddpackage(NAME catch2 GITHUB_REPOSITORY catchorg/Catch2 GIT_TAG v3.2.0)
+
 # Add the formatting code, here format.cmake since it integrates so easily with
 # cmake
 cpmaddpackage(NAME Format.cmake GITHUB_REPOSITORY TheLartians/Format.cmake
@@ -30,9 +31,9 @@ set(BUILD_TESTS
 
 if(${BUILD_TESTS})
   # Add one executable target for the unit tests
-  add_executable(
-    unit_tests test/unit_tests.cpp) # Add this test to ctest, so all that is
-                                    # required to test is to run ctest in
-  # the build directory
+  add_executable(unit_tests test/unit_tests.cpp)
+  # Link with the catch2 main file
+  target_link_libraries(unit_tests PRIVATE Catch2WithMain)
+  # Add a test for ctest
   add_test(NAME "Unit Tests" COMMAND unit_tests)
 endif()

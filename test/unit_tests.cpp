@@ -1,17 +1,9 @@
-#include <iostream>
-#include <thread>
+#include <catch2/catch_all.hpp>
 
-auto add_1(int &value) {
-    value += 1;
+TEST_CASE("Example_Test", "[t1]") {
+    CHECK(1 == 1);
 }
 
-auto add_1_multiple_times(int times, int &value) {
-    for (int i = 0; i < times; i++) {
-        add_1(value);
-    }
-}
-
-int main() {
-
-    return 0;
+TEST_CASE("Example_2", "[t2]") {
+    CHECK(4.0 == std::pow(2, 2));
 }
