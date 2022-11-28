@@ -65,7 +65,7 @@ list(JOIN ACCEPTABLE_BUILD_TYPES " " PRETTY_BUILD_TYPES)
 # Ensure the user has specified a build type
 
 # Ensure a cmake build type is present
-if(${CMAKE_BUILD_TYPE} EQUAL "")
+if(NOT CMAKE_BUILD_TYPE)
   message(
     FATAL_ERROR
       "Please specify one of the follow build types (-D CMAKE_BUILD_TYPE=<type>): ${PRETTY_BUILD_TYPES}"
