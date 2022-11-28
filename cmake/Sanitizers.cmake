@@ -61,6 +61,16 @@ mark_as_advanced(CMAKE_CXX_FLAGS_MEMORYSANITIZER CMAKE_C_FLAGS_MEMORYSANITIZER
 set(ACCEPTABLE_BUILD_TYPES
     "Debug;Release;Coverage;RelWithDebInfo;MinSizeRel;AddressSanitizer;LeakSanitizer;ThreadSanitizer;UndefinedBehaviorSanitizer;MemorySanitizer"
 )
+list(JOIN ACCEPTABLE_BUILD_TYPES " " PRETTY_BUILD_TYPES)
+# Ensure the user has specified a build type
+
+# Ensure a cmake build type is present
+if(${CMAKE_BUILD_TYPE} EQUAL "")
+  message(
+    FATAL_ERROR
+      "Please specify one of the follow build types (-D CMAKE_BUILD_TYPE=<type>): ${PRETTY_BUILD_TYPES}"
+  )
+endif()
 # Make sure the user has chosen a correct build type, otherwise stop generation
 # and ask them to choose one
 list(FIND ACCEPTABLE_BUILD_TYPES ${CMAKE_BUILD_TYPE} BUILD_TYPE_INDEX)
@@ -69,10 +79,9 @@ message(${BUILD_TYPE_INDEX})
 # If the build type wasn't in the list it return index -1
 
 if(${CMAKE_BUILD_TYPE} EQUAL "" OR ${BUILD_TYPE_INDEX} EQUAL -1)
-  list(JOIN ACCEPTABLE_BUILD_TYPES " " PRETTY_BUILD_TYPES)
   message(
     FATAL_ERROR
-      "Please specify one of the follow build types (-D CMAKE_BUILD_TYPE=<type>): ${PRETTY_BUILD_TYPES}"
+      "An incorrect build type was specified. Please specify one of the follow build types (-D CMAKE_BUILD_TYPE=<type>): ${PRETTY_BUILD_TYPES}"
   )
 endif()
 # Message the build type so it is included in output logs
