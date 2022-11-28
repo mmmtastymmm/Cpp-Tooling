@@ -1,5 +1,5 @@
 #include <catch2/catch.hpp>
-
+// TODO add other fails
 int read_from_uninitialized_memory() {
     int *a = new int[10];
     a[5] = 0;
