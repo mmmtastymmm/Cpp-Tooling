@@ -64,21 +64,17 @@ set(ACCEPTABLE_BUILD_TYPES
 # Make sure the user has chosen a correct build type, otherwise stop generation
 # and ask them to choose one
 list(FIND ACCEPTABLE_BUILD_TYPES ${CMAKE_BUILD_TYPE} BUILD_TYPE_INDEX)
+message(${CMAKE_BUILD_TYPE})
+message(${BUILD_TYPE_INDEX})
 # If the build type wasn't in the list it return index -1
-if(BUILD_TYPE_INDEX EQUAL -1)
+
+if(${CMAKE_BUILD_TYPE} EQUAL "" OR ${BUILD_TYPE_INDEX} EQUAL -1)
   list(JOIN ACCEPTABLE_BUILD_TYPES " " PRETTY_BUILD_TYPES)
   message(
     FATAL_ERROR
       "Please specify one of the follow build types (-D CMAKE_BUILD_TYPE=<type>): ${PRETTY_BUILD_TYPES}"
   )
-endif(BUILD_TYPE_INDEX EQUAL -1)
-if(CMAKE_BUILD_TYPE IN_LIST ACCEPTABLE_CMAKE_BUILD_TYPES)
-  list(JOIN ACCEPTABLE_BUILD_TYPES " " PRETTY_BUILD_TYPES)
-  message(
-    FATAL_ERROR
-      "Please specify one of the follow build types (-D CMAKE_BUILD_TYPE=<type>): ${PRETTY_BUILD_TYPES}"
-  )
-endif(CMAKE_BUILD_TYPE IN_LIST ACCEPTABLE_CMAKE_BUILD_TYPES)
+endif()
 # Message the build type so it is included in output logs
 message(STATUS "Current build type is: ${CMAKE_BUILD_TYPE}")
 

@@ -11,7 +11,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "MemorySanitizer")
   # Link with the catch2 main file
   target_link_libraries(memory_sanitizer_fail_test PRIVATE Catch2)
   # Add a test for ctest
-  add_test(NAME "memory_sanitizer_fail_test" COMMAND unit_test_memory)
+  add_test(NAME "memory_sanitizer_fail_test" COMMAND memory_sanitizer_fail_test)
   # Add test that will fail
   set_tests_properties(memory_sanitizer_fail_test PROPERTIES WILL_FAIL TRUE)
 endif(${CMAKE_BUILD_TYPE} STREQUAL "MemorySanitizer")
