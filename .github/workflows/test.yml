@@ -201,7 +201,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a set of commands using the runners shell
+      # Tries to run cmake with no build type, which should fail and thus the OR bash route taken and exit with zero
       - name: Test
         run: |
           cmake -S . -B build -G Ninja && exit 1 || exit 0
@@ -216,7 +216,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a set of commands using the runners shell
+      # Tries to run cmake with a bad build type, which should fail and thus the OR bash route taken and exit with zero
       - name: Test
         run: |
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=BadBuildString && exit 1 || exit 0
