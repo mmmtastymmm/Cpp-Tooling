@@ -1,8 +1,7 @@
 
-/// Read off of freed memory
-/// \return some already freed memory, which should cause address sanitizer to fail
+/// Read from out of bounds memory
+/// \return memory off the end of an allocated array
 int main(int argc, char **) {
-    int *array = new int[100];
-    delete[] array;
-    return array[argc];// BOOM
+    int *array = new int[1];
+    return array[argc + 1];// BOOM
 }
