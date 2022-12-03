@@ -74,10 +74,8 @@ endif()
 # Make sure the user has chosen a correct build type, otherwise stop generation
 # and ask them to choose one
 list(FIND ACCEPTABLE_BUILD_TYPES ${CMAKE_BUILD_TYPE} BUILD_TYPE_INDEX)
-message(${CMAKE_BUILD_TYPE})
-message(${BUILD_TYPE_INDEX})
-# If the build type wasn't in the list it return index -1
 
+# If the build type wasn't in the list it return index -1
 if(${CMAKE_BUILD_TYPE} EQUAL "" OR ${BUILD_TYPE_INDEX} EQUAL -1)
   message(
     FATAL_ERROR
