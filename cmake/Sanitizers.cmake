@@ -47,8 +47,8 @@ set(CMAKE_C_FLAGS_THREADSANITIZER
     CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
 mark_as_advanced(CMAKE_CXX_FLAGS_THREADSANITIZER CMAKE_C_FLAGS_THREADSANITIZER)
 
-# UndefinedBehaviorSanitizer
-# Note: This is aggressive and exits on the first undefined behavior. There are other version of this
+# UndefinedBehaviorSanitizer Note: This is aggressive and exits on the first
+# undefined behavior. There are other version of this
 set(CMAKE_CXX_FLAGS_UNDEFINEDBEHAVIORSANITIZER
     "-fno-sanitize-recover=undefined -O0 -g"
     CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
