@@ -206,17 +206,17 @@ jobs:
         run: |
           cmake -S . -B build -G Ninja && exit 1 || exit 0
 
-    incorrect_build_specified:
-      # The type of runner that the job will run on (has to be ubuntu for docker)
-      runs-on: ubuntu-latest
-      # The image tag to use for the container
-      container: mmmtastymmm/cpp-tooling-build-enviornment
-      # Steps represent a sequence of tasks that will be executed as part of the job
-      steps:
-        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-        - uses: actions/checkout@v3
+  incorrect_build_specified:
+    # The type of runner that the job will run on (has to be ubuntu for docker)
+    runs-on: ubuntu-latest
+    # The image tag to use for the container
+    container: mmmtastymmm/cpp-tooling-build-enviornment
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
 
-        # Runs a set of commands using the runners shell
-        - name: Test
-          run: |
-            cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=BadBuildString && exit 1 || exit 0
+      # Runs a set of commands using the runners shell
+      - name: Test
+        run: |
+          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=BadBuildString && exit 1 || exit 0
