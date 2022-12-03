@@ -5,9 +5,8 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "MemorySanitizer")
   # Will enable tests now
   enable_testing()
   # Add one executable target for the unit tests
-  add_executable(
-    memory_sanitizer_fail_test
-    test/catch_main.cpp "../test/test_sanitizers _working/test_memory.cpp")
+  add_executable(memory_sanitizer_fail_test
+                 ../test/test_sanitizers_working/test_memory_sanitizer.cpp)
   # Link with the catch2 main file
   target_link_libraries(memory_sanitizer_fail_test PRIVATE Catch2)
   # Add a test for ctest
