@@ -52,3 +52,18 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "ThreadSanitizer")
   set_tests_properties(thread_sanitizer_basic_test
                        PROPERTIES WILL_FAIL TRUE LABELS "Sanitizer_Working")
 endif(${CMAKE_BUILD_TYPE} STREQUAL "ThreadSanitizer")
+
+
+# Ensure the sanitizers are catching simple test
+if(${CMAKE_BUILD_TYPE} STREQUAL "UndefinedBehaviorSanitizer")
+  message(STATUS "Adding undefined behavior sanitizer tests for ${CMAKE_PROJECT_NAME}")
+  # Add one executable target for the unit tests
+  add_executable(undefined_behavior_sanitizer_basic_test
+                 ../test/test_sanitizers_working/test_undefined_behavior_sanitizer.cpp)
+  # Add a test for ctest
+  add_test(NAME "undefined_behavior_sanitizer_basic_test"
+           COMMAND undefined_behavior_sanitizer_basic_test)
+  # This should fail if the memory sanitizer is working correctly
+  set_tests_properties(undefined_behavior_sanitizer_basic_test
+                       PROPERTIES WILL_FAIL TRUE LABELS "Sanitizer_Working")
+endif(${CMAKE_BUILD_TYPE} STREQUAL "UndefinedBehaviorSanitizer")
