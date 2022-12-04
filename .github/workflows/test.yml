@@ -11,7 +11,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # Test with the unit tests GCC
-  build-and-unit-tests:
+  unit-tests-debug:
     # The type of runner that the job will run on (has to be ubuntu for docker)
     runs-on: ubuntu-latest
     # The image tag to use for the container
@@ -29,7 +29,7 @@ jobs:
           cd build && ctest --output-on-failure
 
     # Test with the unit tests GCC
-  build-and-unit-tests-release:
+  unit-tests-release:
     # The type of runner that the job will run on (has to be ubuntu for docker)
     runs-on: ubuntu-latest
     # The image tag to use for the container
@@ -48,7 +48,7 @@ jobs:
 
 
   # Test with the unit tests Clang
-  build-and-unit-tests-clang-debug:
+  unit-tests-clang-debug:
     # The type of runner that the job will run on (has to be ubuntu for docker)
     runs-on: ubuntu-latest
     # The image tag to use for the container
@@ -65,7 +65,7 @@ jobs:
           cmake --build build --target all -j $(nproc)
           cd build && ctest --output-on-failure
 
-  build-and-unit-tests-clang-release:
+  unit-tests-clang-release:
     # The type of runner that the job will run on (has to be ubuntu for docker)
     runs-on: ubuntu-latest
     # The image tag to use for the container
