@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22)
 project(CppTooling)
 
 # Add the build types
-include(cmake/Sanitizers.cmake)
+include(cmake/Build_Types.cmake)
 # Add the clang format package using cmake
 include(cmake/CPM.cmake)
 # Add the testing framework, using doctest here
