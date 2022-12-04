@@ -13,19 +13,6 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "AddressSanitizer")
 endif(${CMAKE_BUILD_TYPE} STREQUAL "AddressSanitizer")
 
 # Ensure the sanitizers are catching simple test
-if(${CMAKE_BUILD_TYPE} STREQUAL "Hardened")
-  message(STATUS "Adding hardened tests for ${CMAKE_PROJECT_NAME}")
-  # Add one executable target for the unit tests
-  add_executable(hardened_stack_smash_test
-                 ../test/test_build_working/test_stack_smash.cpp)
-  # Add a test for ctest
-  add_test(NAME "hardened_stack_smash_test" COMMAND hardened_stack_smash_test)
-  # This should fail if the memory sanitizer is working correctly
-  set_tests_properties(hardened_stack_smash_test
-                       PROPERTIES WILL_FAIL TRUE LABELS "Build_Working")
-endif(${CMAKE_BUILD_TYPE} STREQUAL "Hardened")
-
-# Ensure the sanitizers are catching simple test
 if(${CMAKE_BUILD_TYPE} STREQUAL "LeakSanitizer")
   message(STATUS "Adding leak sanitizer tests for ${CMAKE_PROJECT_NAME}")
   # Add one executable target for the unit tests
