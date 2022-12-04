@@ -119,7 +119,7 @@ jobs:
           grep -q "sanitize=address" build/compile_commands.json
           cd build && ctest --output-on-failure
 
-  hardened-sanitizer:
+  hardened:
     # The type of runner that the job will run on (has to be ubuntu for docker)
     runs-on: ubuntu-latest
     # The image tag to use for the container
