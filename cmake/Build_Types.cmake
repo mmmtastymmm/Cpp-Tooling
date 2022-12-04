@@ -100,4 +100,4 @@ endif()
 message(STATUS "Current build type is: ${CMAKE_BUILD_TYPE}")
 
 # Include some optional targets that ensure the sanitizers are functional
-include(${CMAKE_CURRENT_LIST_DIR}/Sanitizers_Working.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/Builds_Working.cmake)
