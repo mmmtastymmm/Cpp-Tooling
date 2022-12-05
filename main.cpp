@@ -13,7 +13,7 @@ auto add_1_multiple_times(int times, int &value) {
 }
 
 auto getInt() -> int {
-    return *(new int);
+    return 5;
 }
 
 struct something {
