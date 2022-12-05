@@ -97,6 +97,13 @@ jobs:
         run: |
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++
           run-clang-tidy -j $(nproc) -p build -export-fixes clang-tidy-fixes.yml
+          if [ -s clang-tidy-fixes.yml ]; then
+            # The file is not-empty.
+            echo "There are clang tidy errors to apply, use clang-apply-replacements to apply the changes"
+            exit 1
+          else
+            echo "There were no issues"
+          fi
       - uses: actions/upload-artifact@v3
         name: 'Upload Artifact'
         if: ${{ failure() }}
