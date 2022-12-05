@@ -99,6 +99,7 @@ jobs:
           run-clang-tidy -j $(nproc) -p build -export-fixes clang-tidy-fixes.yml
           - name: 'Upload Artifact'
       - uses: actions/upload-artifact@v3
+        if: ${{ failure() }}
         with:
           name: clang-tidy-fixes
           path: clang-tidy-fixes.yml
