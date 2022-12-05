@@ -19,10 +19,10 @@ mark_as_advanced(CMAKE_CXX_FLAGS_ADDRESSSANITIZER
                  CMAKE_C_FLAGS_ADDRESSSANITIZER)
 
 set(CMAKE_CXX_FLAGS_HARDENED
-    "-fsanitize=undefined -fno-sanitize-recover=undefined -fsanitize-minimal-runtime -fstack-protector-strong -D_FORTIFY_SOURCE=2 -O3 -g"
+    "-fsanitize=undefined -fno-sanitize-recover=undefined -fsanitize-minimal-runtime -fstack-protector-strong -D_FORTIFY_SOURCE=2 -D_ITERATOR_DEBUG_LEVEL=1 -O3 -g"
     CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
 set(CMAKE_C_FLAGS_HARDENED
-    "-fsanitize=undefined -fno-sanitize-recover=undefined -fsanitize-minimal-runtime -fstack-protector-strong -D_FORTIFY_SOURCE=2 -O3 -g"
+    "-fsanitize=undefined -fno-sanitize-recover=undefined -fsanitize-minimal-runtime -fstack-protector-strong -D_FORTIFY_SOURCE=2 -D_ITERATOR_DEBUG_LEVEL=1 -O3 -g"
     CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
 mark_as_advanced(CMAKE_CXX_FLAGS_HARDENED CMAKE_C_FLAGS_HARDENED)
 
