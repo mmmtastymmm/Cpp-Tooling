@@ -82,6 +82,28 @@ jobs:
           cmake --build build --target all -j $(nproc)
           cd build && ctest --output-on-failure
 
+  clang-tidy:
+    # The type of runner that the job will run on (has to be ubuntu for docker)
+    runs-on: ubuntu-latest
+    # The image tag to use for the container
+    container: mmmtastymmm/cpp-tooling-build-enviornment
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: Unit Tests Clang
+        run: |
+          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++
+          run-clang-tidy -j $(nproc) -p build -export-fixes clang-tidy-fixes.yml
+          - name: 'Upload Artifact'
+      - uses: actions/upload-artifact@v3
+        with:
+          name: clang-tidy-fixes
+          path: clang-tidy-fixes.yml
+          retention-days: 2
+
   # Test with the unit tests Clang
   format-code:
     # The type of runner that the job will run on (has to be ubuntu for docker)
