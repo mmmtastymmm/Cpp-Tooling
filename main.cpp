@@ -1,5 +1,6 @@
 #include <iostream>
 #include <thread>
+#include <vector>
 
 auto add_1(int &value) {
     value += 1;
@@ -14,6 +15,12 @@ auto add_1_multiple_times(int times, int &value) {
 auto getInt() -> int {
     return 5;
 }
+
+struct something {
+    int return5() {
+        return 5;
+    }
+};
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
@@ -30,6 +37,11 @@ int main() {
 
     int f = getInt();
     std::cout << f << std::endl;
+
+    std::vector<double> vector{1, 2, 3, 4};
+    for (decltype(vector.size()) i = 0; i < vector.size(); i++) {
+        std::cout << vector.at(i) << std::endl;
+    }
 
     return 0;
 }
