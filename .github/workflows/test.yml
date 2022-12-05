@@ -224,7 +224,7 @@ jobs:
         run: |
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Debug
           cmake --build build --target all -j $(nproc)
-          cd build && drmemory ctest --output-on-failure
+          cd build && drmemory -- ctest --output-on-failure
 
   no-build-specified:
     # The type of runner that the job will run on (has to be ubuntu for docker)
