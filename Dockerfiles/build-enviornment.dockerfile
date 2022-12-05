@@ -9,16 +9,9 @@ RUN apt-get update &&  \
     cmake \
     gdb \
     git \
-    libunwind8 \
     ninja-build  \
     python3-pip \
     wget \
     && \
     apt-get clean && \
     pip install --no-cache cmake-format
-
-RUN wget https://github.com/DynamoRIO/drmemory/releases/download/release_2.5.0/DrMemory-Linux-2.5.0.tar.gz && \
-    tar xzf DrMemory-Linux-2.5.0.tar.gz && \
-    rm DrMemory-Linux-2.5.0.tar.gz
-
-ENV PATH=$PATH:/DrMemory-Linux-2.5.0/bin

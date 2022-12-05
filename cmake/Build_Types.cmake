@@ -18,15 +18,7 @@ set(CMAKE_C_FLAGS_COVERAGE
     CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
 mark_as_advanced(CMAKE_CXX_FLAGS_COVERAGE CMAKE_C_FLAGS_COVERAGE)
 
-# Dr Memory build flags
-set(CMAKE_CXX_FLAGS_DRMEMORY
-    "-g -fno-inline -fno-omit-frame-pointer"
-    CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
-set(CMAKE_C_FLAGS_DRMEMORY
-    "-g -fno-inline -fno-omit-frame-pointer"
-    CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
-mark_as_advanced(CMAKE_CXX_FLAGS_DRMEMORY CMAKE_C_FLAGS_DRMEMORY)
-
+# Hardened flags, a safer executable that maybe a little slower but safer.
 set(CMAKE_CXX_FLAGS_HARDENED
     "-fsanitize=undefined -fno-sanitize-recover=undefined -fsanitize-minimal-runtime -fstack-protector-strong -D_FORTIFY_SOURCE=2 -D_ITERATOR_DEBUG_LEVEL=1 -O3 -g"
     CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
@@ -79,7 +71,7 @@ mark_as_advanced(CMAKE_CXX_FLAGS_UNDEFINEDBEHAVIORSANITIZER
 
 # Set all the build types supported here
 set(ACCEPTABLE_BUILD_TYPES
-    "Debug;Release;RelWithDebInfo;MinSizeRel;AddressSanitizer;Coverage;DrMemory;Hardened;LeakSanitizer;MemorySanitizer;ThreadSanitizer;UndefinedBehaviorSanitizer"
+    "Debug;Release;RelWithDebInfo;MinSizeRel;AddressSanitizer;Coverage;Hardened;LeakSanitizer;MemorySanitizer;ThreadSanitizer;UndefinedBehaviorSanitizer"
 )
 # Ensure the user has specified a build type
 

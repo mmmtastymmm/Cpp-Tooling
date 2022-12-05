@@ -7,8 +7,3 @@ TEST_CASE("Example_Test", "[t1]") {
 TEST_CASE("Example_2", "[t2]") {
     CHECK(4.0 == std::pow(2, 2));
 }
-
-TEST_CASE("Example_3", "[t2]") {
-    auto four = new int(4);
-    CHECK(4 == *four);
-}
