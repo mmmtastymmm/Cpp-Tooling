@@ -11,7 +11,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # Test with the unit tests GCC
-  build-and-unit-tests:
+  unit-tests-debug:
     # The type of runner that the job will run on (has to be ubuntu for docker)
     runs-on: ubuntu-latest
     # The image tag to use for the container
@@ -24,12 +24,12 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Unit Tests GCC
         run: |
-          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Debug
-          cmake --build build --target all
+          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Debug 
+          cmake --build build --target all -j $(nproc) 
           cd build && ctest --output-on-failure
 
     # Test with the unit tests GCC
-  build-and-unit-tests-release:
+  unit-tests-release:
     # The type of runner that the job will run on (has to be ubuntu for docker)
     runs-on: ubuntu-latest
     # The image tag to use for the container
@@ -43,12 +43,12 @@ jobs:
       - name: Unit Tests GCC
         run: |
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_BUILD_TYPE=Debug
-          cmake --build build --target all
+          cmake --build build --target all -j $(nproc)
           cd build && ctest --output-on-failure
 
 
   # Test with the unit tests Clang
-  build-and-unit-tests-clang-debug:
+  unit-tests-clang-debug:
     # The type of runner that the job will run on (has to be ubuntu for docker)
     runs-on: ubuntu-latest
     # The image tag to use for the container
@@ -62,10 +62,10 @@ jobs:
       - name: Unit Tests Clang
         run: |
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Debug -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++
-          cmake --build build --target all
+          cmake --build build --target all -j $(nproc)
           cd build && ctest --output-on-failure
 
-  build-and-unit-tests-clang-release:
+  unit-tests-clang-release:
     # The type of runner that the job will run on (has to be ubuntu for docker)
     runs-on: ubuntu-latest
     # The image tag to use for the container
@@ -79,7 +79,7 @@ jobs:
       - name: Unit Tests Clang
         run: |
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++
-          cmake --build build --target all
+          cmake --build build --target all -j $(nproc)
           cd build && ctest --output-on-failure
 
   # Test with the unit tests Clang
@@ -98,7 +98,7 @@ jobs:
         run: |
           git config --global --add safe.directory /__w/Cpp-Tooling/Cpp-Tooling
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Debug
-          cmake --build build --target check-format
+          cmake --build build --target check-format -j $(nproc)
 
   # Test with the unit tests Address Sanitizer
   address-sanitizer:
@@ -115,8 +115,26 @@ jobs:
       - name: Test
         run: |
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=AddressSanitizer
-          cmake --build build --target all
+          cmake --build build --target all -j $(nproc)
           grep -q "sanitize=address" build/compile_commands.json
+          cd build && ctest --output-on-failure
+
+  hardened:
+    # The type of runner that the job will run on (has to be ubuntu for docker)
+    runs-on: ubuntu-latest
+    # The image tag to use for the container
+    container: mmmtastymmm/cpp-tooling-build-enviornment
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: Test
+        run: |
+          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Hardened -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++
+          cmake --build build --target all -j $(nproc) 
+          grep -q "stack-protector" build/compile_commands.json
           cd build && ctest --output-on-failure
 
   leak-sanitizer:
@@ -133,7 +151,7 @@ jobs:
       - name: Test
         run: |
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=LeakSanitizer
-          cmake --build build --target all
+          cmake --build build --target all -j $(nproc)
           grep -q "sanitize=leak" build/compile_commands.json
           cd build && ctest --output-on-failure
 
@@ -151,7 +169,7 @@ jobs:
       - name: Test
         run: |
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=ThreadSanitizer
-          cmake --build build --target all
+          cmake --build build --target all  -j $(nproc)
           grep -q "sanitize=thread" build/compile_commands.json
           cd build && ctest --output-on-failure
 
@@ -169,7 +187,7 @@ jobs:
       - name: Test
         run: |
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=UndefinedBehaviorSanitizer
-          cmake --build build --target all
+          cmake --build build --target all -j $(nproc) 
           grep -q "sanitize=undefined" build/compile_commands.json
           cd build && ctest --output-on-failure
 
@@ -187,7 +205,7 @@ jobs:
       - name: Test
         run: |
           cmake -S . -B build -G Ninja -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++ -D CMAKE_BUILD_TYPE=MemorySanitizer
-          cmake --build build --target all
+          cmake --build build --target all -j $(nproc)
           grep -q "sanitize=memory" build/compile_commands.json
           cd build && ctest --output-on-failure
 
