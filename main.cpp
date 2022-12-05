@@ -12,8 +12,14 @@ auto add_1_multiple_times(int times, int &value) {
 }
 
 auto getInt() -> int {
-    return 5;
+    return *(new int);
 }
+
+struct something {
+    int return5() {
+        return 5;
+    }
+};
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
@@ -30,6 +36,7 @@ int main() {
 
     int f = getInt();
     std::cout << f << std::endl;
+
 
     return 0;
 }
