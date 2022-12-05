@@ -99,7 +99,7 @@ jobs:
           run-clang-tidy -j $(nproc) -p build -export-fixes clang-tidy-fixes.yml
           if [ -s clang-tidy-fixes.yml ]; then
             # The file is not-empty.
-            echo "There are clang tidy errors to apply, use clang-apply-replacements to apply the changes"
+            echo "There are clang tidy errors to apply, use clang-apply-replacements to apply any changes that can be applied."
             exit 1
           else
             echo "There were no issues"
