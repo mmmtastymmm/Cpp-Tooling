@@ -222,7 +222,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Test
         run: |
-          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Debug
+          cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=DrMemory
           cmake --build build --target all -j $(nproc)
           cd build && drmemory -- ctest --output-on-failure
 
