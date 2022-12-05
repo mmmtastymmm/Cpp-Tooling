@@ -1,13 +1,3 @@
-# Add new build types Coverage
-message(STATUS "Adding sanitizer build types")
-set(CMAKE_CXX_FLAGS_COVERAGE
-    "${GCC_DEBUG_FLAGS} -fprofile-arcs -ftest-coverage"
-    CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
-set(CMAKE_C_FLAGS_COVERAGE
-    "${GCC_DEBUG_FLAGS} -fprofile-arcs -ftest-coverage"
-    CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
-mark_as_advanced(CMAKE_CXX_FLAGS_COVERAGE CMAKE_C_FLAGS_COVERAGE)
-
 # Address Sanitizer
 set(CMAKE_CXX_FLAGS_ADDRESSSANITIZER
     "-fsanitize=address -O1 -g -fno-omit-frame-pointer"
@@ -18,11 +8,22 @@ set(CMAKE_C_FLAGS_ADDRESSSANITIZER
 mark_as_advanced(CMAKE_CXX_FLAGS_ADDRESSSANITIZER
                  CMAKE_C_FLAGS_ADDRESSSANITIZER)
 
+# Add new build types Coverage
+message(STATUS "Adding sanitizer build types")
+set(CMAKE_CXX_FLAGS_COVERAGE
+    "${GCC_DEBUG_FLAGS} -fprofile-arcs -ftest-coverage"
+    CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
+set(CMAKE_C_FLAGS_COVERAGE
+    "${GCC_DEBUG_FLAGS} -fprofile-arcs -ftest-coverage"
+    CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
+mark_as_advanced(CMAKE_CXX_FLAGS_COVERAGE CMAKE_C_FLAGS_COVERAGE)
+
+# Hardened flags, a safer executable that maybe a little slower but safer.
 set(CMAKE_CXX_FLAGS_HARDENED
-    "-fsanitize=undefined -fno-sanitize-recover=undefined -fsanitize-minimal-runtime -fstack-protector-strong -D_FORTIFY_SOURCE=2 -O3 -g"
+    "-fsanitize=undefined -fno-sanitize-recover=undefined -fsanitize-minimal-runtime -fstack-protector-strong -D_FORTIFY_SOURCE=2 -D_ITERATOR_DEBUG_LEVEL=1 -O3 -g"
     CACHE STRING "Flags used by the C++ compiler during coverage builds." FORCE)
 set(CMAKE_C_FLAGS_HARDENED
-    "-fsanitize=undefined -fno-sanitize-recover=undefined -fsanitize-minimal-runtime -fstack-protector-strong -D_FORTIFY_SOURCE=2 -O3 -g"
+    "-fsanitize=undefined -fno-sanitize-recover=undefined -fsanitize-minimal-runtime -fstack-protector-strong -D_FORTIFY_SOURCE=2 -D_ITERATOR_DEBUG_LEVEL=1 -O3 -g"
     CACHE STRING "Flags used by the C compiler during coverage builds." FORCE)
 mark_as_advanced(CMAKE_CXX_FLAGS_HARDENED CMAKE_C_FLAGS_HARDENED)
 
