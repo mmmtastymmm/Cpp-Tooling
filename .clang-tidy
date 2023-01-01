@@ -1,4 +1,4 @@
-HeaderFilterRegex: '*build*/_deps'
+HeaderFilterRegex: '(*build*/_deps)'
 Checks: '-*,readability-identifier-naming'
 CheckOptions:
   - key:             readability-identifier-naming.ClassCase
