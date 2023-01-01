@@ -144,7 +144,15 @@ jobs:
         run: |
           git config --global --add safe.directory /__w/Cpp-Tooling/Cpp-Tooling
           cmake -S . -B build -G Ninja -D CMAKE_BUILD_TYPE=Debug
-          cmake --build build --target check-format -j $(nproc)
+          cmake --build build --target check-format -j $(nproc) && exit 0 || cmake --build build --target fix-format -j $(nproc) && git diff > format.patch && cat format.patch && exit 1
+
+      - uses: actions/upload-artifact@v3
+        name: 'Upload Format Issues'
+        if: ${{ failure() }}
+        with:
+          name: format-fixes
+          path: format.patch
+          retention-days: 2
 
   # Test with the unit tests Address Sanitizer
   address-sanitizer:

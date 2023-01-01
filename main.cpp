@@ -2,11 +2,11 @@
 #include <thread>
 #include <vector>
 
-auto add_1(int &value) {
+auto add_1(int& value) {
     value += 1;
 }
 
-auto add_1_multiple_times(int times, int &value) {
+auto add_1_multiple_times(int times, int& value) {
     for (int i = 0; i < times; i++) {
         add_1(value);
     }
@@ -38,7 +38,7 @@ int main() {
     int f = getInt();
     std::cout << f << std::endl;
 
-    std::vector<double> vector{1, 2, 3, 4};
+    std::vector<double> vector { 1, 2, 3, 4 };
     for (decltype(vector.size()) i = 0; i < vector.size(); i++) {
         std::cout << vector.at(i) << std::endl;
     }

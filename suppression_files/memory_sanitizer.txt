@@ -1,3 +1,5 @@
 # Add any memory suppression here
+src:build/src/catch2/*
+src:build/src/catch2/internal/catch_main.cpp
+fun:Catch::*
 fun:*Catch*
-fun:Catch::ConsoleReporter::printTotals
