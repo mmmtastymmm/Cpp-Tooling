@@ -1,3 +1,3 @@
 # Add any memory suppression here
 fun:*Catch*
-fun:Catch::Clara::*
+fun:Catch::Clara::Parser
