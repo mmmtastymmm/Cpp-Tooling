@@ -2,13 +2,13 @@
 #include <thread>
 #include <vector>
 
-auto add_1(int& value) {
+auto Add1(int& value) {
     value += 1;
 }
 
-auto add_1_multiple_times(int times, int& value) {
+auto Add1MultipleTimes(int times, int& value) {
     for (int i = 0; i < times; i++) {
-        add_1(value);
+        Add1(value);
     }
 }
 
@@ -27,8 +27,8 @@ int main() {
     auto a = new int(12);
     std::cout << a << std::endl;
     auto value = 0;
-    auto t1 = std::thread(add_1_multiple_times, 10000, std::ref(value));
-    auto t2 = std::thread(add_1_multiple_times, 20000, std::ref(value));
+    auto t1 = std::thread(Add1MultipleTimes, 10000, std::ref(value));
+    auto t2 = std::thread(Add1MultipleTimes, 20000, std::ref(value));
 
     t1.join();
     t2.join();

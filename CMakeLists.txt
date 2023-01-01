@@ -20,7 +20,7 @@ cpmaddpackage(NAME Format.cmake GITHUB_REPOSITORY TheLartians/Format.cmake
 
 # Local project code CHANGE THIS. Currently adds one target, which is a hello
 # world executable right now. May have to switch to a library.
-add_executable(cpp_tooling main.cpp)
+add_executable(cpp_tooling src/main.cpp)
 
 # Add compile flags to the tooling repo
 target_compile_options(cpp_tooling PRIVATE -Wall -Wpedantic -Wshadow
