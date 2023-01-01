@@ -8,17 +8,18 @@ set(CMAKE_CXX_STANDARD 20)
 # Export the compile commands, which is a json file with all the commands needed
 # to build all the targets
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
-# Add the clang format package using cmake
+
+# Package management with CPM Add the clang format package using cmake
 include(cmake/CPM.cmake)
 # Add the testing framework, using doctest here
 cpmaddpackage(NAME catch2 GITHUB_REPOSITORY catchorg/Catch2 GIT_TAG v3.2.1)
-
 # Add the formatting code, here format.cmake since it integrates so easily with
 # cmake
 cpmaddpackage(NAME Format.cmake GITHUB_REPOSITORY TheLartians/Format.cmake
               GIT_TAG v1.7.3)
-# CHANGE THIS. Currently adds one target, which is a hello world executable
-# right now. May have to switch to a library.
+
+# Local project code CHANGE THIS. Currently adds one target, which is a hello
+# world executable right now. May have to switch to a library.
 add_executable(cpp_tooling main.cpp)
 
 # Add compile flags to the tooling repo
