@@ -147,7 +147,7 @@ jobs:
           cmake --build build --target check-format -j $(nproc) && exit 0 || cmake --build build --target fix-format -j $(nproc) && git diff > format.patch && cat format.patch && exit 1
 
       - uses: actions/upload-artifact@v3
-        name: 'Upload Clang Issues'
+        name: 'Upload Format Issues'
         if: ${{ failure() }}
         with:
           name: format-fixes
