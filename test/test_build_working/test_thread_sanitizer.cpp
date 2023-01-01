@@ -5,7 +5,7 @@
 /// Adds 1 to the value reference n number of times
 /// \param value The value to add to
 /// \param times How many times to do it
-void add1(int &value, int times) {
+void add1(int& value, int times) {
     for (int i = 0; i < times; i++) {
         value += 1;
     }
@@ -14,7 +14,7 @@ void add1(int &value, int times) {
 /// Adds 1 to the value reference n number of times
 /// \param value The value to add to
 /// \param times How many times to do it
-void add2(int &value, int times) {
+void add2(int& value, int times) {
     for (int i = 0; i < times; i++) {
         value += 1;
     }
