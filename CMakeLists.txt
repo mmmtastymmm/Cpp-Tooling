@@ -6,7 +6,7 @@ include(cmake/Build_Types.cmake)
 # Add the clang format package using cmake
 include(cmake/CPM.cmake)
 # Add the testing framework, using doctest here
-cpmaddpackage(NAME catch2 GITHUB_REPOSITORY catchorg/Catch2 GIT_TAG v2.13.10)
+cpmaddpackage(NAME catch2 GITHUB_REPOSITORY catchorg/Catch2 GIT_TAG v3.2.1)
 
 # Add the formatting code, here format.cmake since it integrates so easily with
 # cmake
@@ -34,9 +34,9 @@ if(${BUILD_TESTS})
   # Will enable tests now
   enable_testing()
   # Add one executable target for the unit tests
-  add_executable(unit_tests test/unit_tests.cpp test/catch_main.cpp)
+  add_executable(unit_tests test/unit_tests.cpp)
   # Link with the catch2 main file
-  target_link_libraries(unit_tests PRIVATE Catch2)
+  target_link_libraries(unit_tests PRIVATE Catch2WithMain)
   # Add a test for ctest
   add_test(NAME "UnitTests" COMMAND unit_tests)
 else()
