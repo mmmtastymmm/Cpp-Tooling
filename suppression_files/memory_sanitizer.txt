@@ -1,3 +1,2 @@
 # Add any memory suppression here
-fun:*Catch*
-fun:Catch::Clara::Parser
+src:build/src/catch2/*
