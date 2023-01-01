@@ -22,5 +22,5 @@ TEST_CASE("Example_2", "[t2]") {
 
 TEST_CASE("Example_Heap", "[t3]") {
     const auto container = ContainerHolds12();
-    CHECK(*container.x == 12);
+    CHECK(*container.x== 12);
 }
